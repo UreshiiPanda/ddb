@@ -20,7 +20,7 @@ characters. Users will thus own characters, and those characters will be linked 
 dungeons, items, spells, and abilities as each player wishes. Players are free to create their
 own characters, dungeons, items, spells, and abilities a la D&D style.
 
-<h4>Tech Stack:</h4>  Flask/MySQL/HTML/CSS/Javascript<br><br>
+<h4>Tech Stack:</h4>  Flask/MySQL/HTML/CSS/Javascript/Material Design Lite<br><br>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
