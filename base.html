@@ -1,0 +1,106 @@
+<!--
+    This is the base Jinja template which is applied to all other pages.
+    It contains the Navbar and Footer, and also the links for the css and for
+    the Javascript UI_logic helper file
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <!-- Link in MDL CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!--
+        Link in favicon
+        Source URL: https://www.flaticon.com/packs/yokai-8?word=character
+    -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <!--
+        START MDL HTML/CSS LAYOUT
+        Source URL: https://getmdl.io/components/
+    -->
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Dungeons &amp; Dragons Manager</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer">
+                </div>
+                <!-- Navigation -->
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="/index.html">Users</a>
+		    <a class="mdl-navigation__link" href="/charSelection.html">Characters</a>
+                    <a class="mdl-navigation__link" href="/spells_abilities.html">Spells/Abilities</a>
+                    <a class="mdl-navigation__link" href="/dungeonSelection.html">Dungeons</a>
+                    <a class="mdl-navigation__link" href="/items.html">Items</a> 
+                    <a class="mdl-navigation__link" href="/itemSelection.html">Inventories</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">D&amp;D Manager</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/index.html">Users</a>
+		<a class="mdl-navigation__link" href="/charSelection.html">Characters</a>
+                <a class="mdl-navigation__link" href="/spells_abilities.html">Spells/Abilities</a>
+                <a class="mdl-navigation__link" href="/dungeonSelection.html">Dungeons</a>
+                <a class="mdl-navigation__link" href="/items.html">Items</a> 
+                <a class="mdl-navigation__link" href="/itemSelection.html">Inventories</a>
+            </nav>
+        </div>
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        <!-- main END class="mdl-layout__content"-->
+        </main>
+
+        <footer class = "mdl-mini-footer">
+            <div class = "mdl-mini-footer__left-section .mdl-typography--caption">
+                <div class = mdl-mini-footer__link-list>
+                    <ul class="navbar-vertical-spacer">|</ul>
+                    <ul id="ul_load_bar">
+                        <a id="reload_the_db" href="reload_the_db" title="RELOAD DATABASE">
+                            <i class="inline-icon material-icons">refresh</i>
+                            &nbsp&nbsp&nbsp  Reload Database
+                        </a>
+                    </ul>
+                    <!--
+                        Flash message flashing for displaying backend feedback
+                    -->
+                    {% with alerts = get_flashed_messages(with_categories=true) %}
+                        {% if alerts %}
+                            <ul class="navbar-vertical-spacer">|</ul>
+                        {% endif %}
+                            {% if alerts %}
+                                {% for category, msg in alerts %}
+                                    <ul class="{{category}}">{{msg}}</ul>
+                                {% endfor %}
+                            {% endif %}
+                    {% endwith %}
+
+                </div>
+            </div>
+        </footer>
+    <!-- END MDL LAYOUT   -->
+    </div>
+
+    <!-- Link for MDL JS: -->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Link for custom JS file for button binds -->
+    <script src="{{ url_for('static', filename='UI_logic.js') }}"></script>
+
+</body>
+</html>
