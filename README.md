@@ -20,9 +20,7 @@ characters. Users will thus own characters, and those characters will be linked 
 dungeons, items, spells, and abilities as each player wishes. Players are free to create their
 own characters, dungeons, items, spells, and abilities a la D&D style.
 
-#### Tech Stack:<br>
-Flask/MySQL/HTML/CSS/Javascript<br><br>
-
+<h4>Tech Stack:</h4>  Flask/MySQL/HTML/CSS/Javascript<br><br>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -49,8 +47,8 @@ Flask/MySQL/HTML/CSS/Javascript<br><br>
       NOTE:   "your_mysql_" variables are custom-defined and depend on your own mysql database credentials<br>
       NOTE:   the session_key variable can be set to <i>any</i> string value<br>
 
-3. Setup the DB tables in your local MySQL with default data (or create your own data)
-   ```sql
+3. Start up your mysql and load the DB tables in your local MySQL with default data (or create your own data)
+   ```sh
       source db/ddl.sql
    ```
    NOTE:  MySQL must be started from the working directory since this is a relative path
@@ -72,10 +70,10 @@ Flask/MySQL/HTML/CSS/Javascript<br><br>
     NOTE:  packages may need to be updated or installed individually. Sometimes
            pip will try to install dependencies from cache, so the following
            --no-cache-dir flag is sometimes needed to avoid this problem
-           ```sh
-             pip3 install --no-cache-dir mysqlclient
-           ```
-   
+      ```sh
+         pip3 install --no-cache-dir mysqlclient
+      ```
+
 8. Start the Flask app:
    ```sh
      python3 app.py
