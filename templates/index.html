@@ -1,0 +1,132 @@
+<!--
+    template for Users/homepage
+-->
+
+{% extends "base.html" %}
+{% block title %}
+    Users page for selecting and adding users
+{% endblock %}
+
+{% block content %}
+
+<div class="table_data table_left mdl-card mdl-shadow--6dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Users</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th>username</th>
+                    <th>password</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in user_rows %}
+                <tr>
+                    <td>
+                        {{row[1]}}
+                    </td>
+                    <td>
+                        {{row[2]}}
+                    </td>
+                    <td>
+                        {{row[3]}}
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="table_data table_right mdl-card mdl-shadow--6dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Welcome to D&D Manager</h2>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+        <ul class="intro-ul-list">
+            <li>You are on the User Accounts administration page</li>
+            <li>Selecting a user allows you to view user-specific D&amp;D data on each page</li>
+	    <li>You can also view D&amp;D data from all users on each page</li>
+            <li>Characters can be associated with Spells, Abilities, Dungeons, and Items/Inventories</li>
+        </ul>
+    </div>
+    <div class="mdl-card__supporting-text">
+
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th  id="index_th_set_username">select a user to view user-specific data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="index_td_set_username">
+                        <div class="mdl-selectfield mdl-js-selectfield">
+                            <select id="select_user" name="select_user" class="mdl-selectfield__select">
+                                <option value="None765" {% if username is none %}selected{% endif %}>
+                                    None
+                                </option>
+                                {% for row in user_rows %}
+                                <option value="{{row[1]}}" {% if row[1] == username %}selected{% endif %}>
+                                    {{row[1]}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="table_data table_left mdl-card mdl-shadow--6dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Create New User Account</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="mdl-textfield fatter mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" value="" maxlength="50">
+                            <label class="mdl-textfield__label" ></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="mdl-textfield fatter mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" value="" maxlength="50">
+                            <label class="mdl-textfield__label" ></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="mdl-textfield fattest mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="email" value="" maxlength="100">
+                            <label class="mdl-textfield__label" ></label>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="insert_usr_btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                           INSERT
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
