@@ -1,6 +1,6 @@
 # D&DB
 
-#### Dungeons & Dragons DB Manager written in Flask
+#### Dungeons & Dragons DB Manager CRUD app written in Flask
 
 <a name="readme-top"></a>
 
