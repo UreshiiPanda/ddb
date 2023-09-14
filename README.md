@@ -41,13 +41,16 @@ own characters, dungeons, items, spells, and abilities a la D&D style.
     ```sh
         git clone https://github.com/UreshiiPanda/ddb.git
     ```
+    NOTE: the SQL script in ```flask_app/db/ddl.sql``` has been setup to load the app with dummy data
+          solely for demo purposes. Feel free to remove these statements from the script if you wish
+          to start the app without any demo data.
     
-2. From that root directory, run docker compose:
+3. From that root directory, run docker compose:
     ```sh
         docker compose up
     ```
     
-3. To stop the app, stop docker compose from another terminal:
+4. To stop the app, stop docker compose from another terminal:
     ```sh
         docker compose down
     ```
