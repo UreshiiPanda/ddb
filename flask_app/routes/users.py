@@ -7,8 +7,8 @@
 import sys
 sys.path.append("..")  # Add parent directory sys.path for imports
 from flask import Blueprint, render_template, request, flash, session
-from db.mysql_initializer import mysql
-from db import queries as sql
+from mysql_initializer import mysql
+import queries as sql
 from functions import flash_err
 
 users_bp = Blueprint('users', __name__)

@@ -1,0 +1,45 @@
+version: "v2.20.2"
+
+services:
+
+  flask-app:
+    build:
+      context: ./flask_app
+      args:
+        mysql_host: 'mysql'
+        mysql_user: 'root'
+        mysql_password: 'root'
+        mysql_db: 'ddb'
+        mysql_port: 3306
+        app_port: 8000
+        session_key: 'my_key'
+    container_name: flask-app
+    stdin_open: true
+    ports:
+      - "8000:8000"
+    networks:
+      - ddb-net
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: mySQL 
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - "3306:3306"
+    networks:
+      - ddb-net
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./flask_app/db/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+
+networks:
+  ddb-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

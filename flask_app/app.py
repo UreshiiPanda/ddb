@@ -1,5 +1,6 @@
 from flask import Flask
-from env.credentials import *
+import os
+from os import environ
 from datetime import timedelta
 
 # Route imports:
@@ -12,23 +13,24 @@ import routes.spells_abilities
 import routes.users
 import routes.inventory
 
-APP_PORT = 33333
 
 # Separate out MySQL connector so that python files in routes can import it too
-from db.mysql_initializer import mysql
+from mysql_initializer import mysql
 
 app = Flask(__name__)
 
 # Custom variables defined below:
-# Please create env/credentials.py to define these 4 ENV variables
-app.config['MYSQL_HOST'] = ENV_HOST
-app.config['MYSQL_USER'] = ENV_USERNAME
-app.config['MYSQL_PASSWORD'] = ENV_PASSWORD
-app.config['MYSQL_DB'] = ENV_DATABASE
+# Please create env/credentials.py to define these 6 ENV variables
+app.config['MYSQL_HOST'] = environ.get('MYSQL_HOST')
+app.config['MYSQL_USER'] = environ.get('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = environ.get('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = environ.get('MYSQL_DB')
+app.config['MYSQL_PORT'] = int(environ.get('MYSQL_PORT'))
+app.config['APP_PORT'] = int(environ.get('APP_PORT'))
 
 # "session_key" is defined in env/credentials.py
 # And may be any string
-app.secret_key = session_key
+app.secret_key = environ.get('SESSION_KEY')
 app.permanent_session_lifetime = timedelta(hours=1)
 
 
@@ -52,4 +54,4 @@ with app.app_context():
     pass
 
 if __name__ == "__main__":
-    app.run(port=APP_PORT, debug=True)
+    app.run(host="0.0.0.0", port=environ.get('APP_PORT'), debug=True)

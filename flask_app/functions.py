@@ -3,8 +3,8 @@
 
 """
 
-from db.mysql_initializer import mysql
-from flask import flash
+from mysql_initializer import mysql
+from flask import flash, session
 
 def flash_err(e):
     """
@@ -36,4 +36,5 @@ def generate_ddl():
             cur.execute(statement_so_far)
             mysql.connection.commit()
             statement_so_far = ''
+    session['username'] = None
     cur.close()

@@ -8,8 +8,8 @@ import sys
 sys.path.append("..")  # Add parent directory sys.path for imports
 from flask import Blueprint, render_template, request, session
 
-from db.mysql_initializer import mysql
-from db import queries as sql
+from mysql_initializer import mysql
+import queries as sql
 
 single_views_bp = Blueprint('single_views', __name__)
 
